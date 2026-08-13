@@ -44,28 +44,5 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Host bundle smoke test
-        run: node -e "import('./lib/index.js').then(m => { if (typeof m.apply !== 'function' || !m.name) process.exit(1); console.log('host bundle ok:', m.name) }).catch(e => { console.error(e); process.exit(1) })"
-
-      - name: Cron and store smoke test
-        run: node --experimental-strip-types --input-type=module -e "
-          const { parseCron, cronMatches, nextRun, CronParseError } = await import('./src/cron.ts');
-          if (!cronMatches(parseCron('0 9 * * *'), new Date(2026, 7, 14, 9, 0))) throw new Error('cron match failed');
-          if (nextRun(parseCron('0 0 29 2 *'), new Date(2026, 7, 14)) === null) throw new Error('leap next failed');
-          try { parseCron('61 * * * *'); throw new Error('bad cron accepted') } catch (e) { if (!(e instanceof CronParseError)) throw e }
-          const { mkdtempSync, rmSync } = await import('node:fs');
-          const { join } = await import('node:path');
-          const { tmpdir } = await import('node:os');
-          const { ScheduleStore } = await import('./src/store.ts');
-          const home = mkdtempSync(join(tmpdir(), 'dsh-ci-'));
-          const a = new ScheduleStore({ home, logger: { warn() {} } });
-          await a.add({ cron: '0 9 * * *', prompt: 'x' });
-          const b = new ScheduleStore({ home, logger: { warn() {} } });
-          await b.add({ cron: '*/10 * * * *', prompt: 'y' });
-          await new Promise(r => setTimeout(r, 50));
-          const c = new ScheduleStore({ home, logger: { warn() {} } });
-          await new Promise(r => setTimeout(r, 50));
-          if (c.list().length !== 2) throw new Error('store race failed: ' + c.list().length);
-          rmSync(home, { recursive: true, force: true });
-          console.log('cron/store ok');
-        "
+      - name: Smoke test (host bundle + cron + store)
+        run: node --experimental-strip-types scripts/smoke.mjs
