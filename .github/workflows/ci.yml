@@ -28,11 +28,11 @@ jobs:
       - name: Checkout deepseek-harness (sibling)
         run: git clone --depth 1 https://github.com/deepseek-ai/deepseek-harness ../deepseek-harness
 
-      - name: Build harness packages
+      - name: Build harness host half
         working-directory: ../deepseek-harness
         run: |
           pnpm install
-          pnpm -r run build
+          pnpm run build:lib:host
 
       - name: Install plugin dependencies
         run: pnpm install
