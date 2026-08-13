@@ -42,6 +42,7 @@ cd dsh-schedule
 pnpm install
 pnpm build
 
+# install into web profile (link: this directory)
 dsh plugin --profile web add link:$(pwd)   # POSIX
 # Windows: dsh plugin --profile web add link:E:\path\to\dsh-schedule
 ```

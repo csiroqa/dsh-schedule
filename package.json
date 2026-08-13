@@ -1,7 +1,7 @@
 {
   "name": "@dsh-external/dsh-schedule",
   "version": "0.1.0",
-  "description": "定时任务 + 状态监控插件：按 cron 时间表自动触发 DSH Agent 执行任务，/status 与设置页仪表盘查看系统与 harness 综合状态。",
+  "description": "DeepSeek Harness（DSH）定时任务 + 状态监控插件：按 cron 时间表自动触发 Agent 执行任务，/status 与设置页仪表盘查看系统与 harness 综合状态。",
   "private": true,
   "type": "module",
   "main": "lib/index.js",

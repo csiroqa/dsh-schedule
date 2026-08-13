@@ -54,7 +54,7 @@ dsh plugin --profile web add link:E:\path\to\dsh-schedule   # Windows
 1. 侧栏输入 `/schedule list` 查看任务；`/schedule add 0 9 * * * 每天 9 点总结昨天的进展` 添加任务
 2. 设置 > 插件 > **定时任务**：可视化添加 / 立即运行 / 暂停 / 恢复 / 删除
 3. 设置 > 插件 > **状态**：系统与 harness 实时仪表盘
-4. `/status`：命令行查看综合状态
+4. `/status`：会话内查看综合状态
 
 ## 兼容性
 
