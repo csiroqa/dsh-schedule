@@ -1,5 +1,7 @@
 # dsh-schedule
 
+[![CI](https://github.com/csiroqa/dsh-schedule/actions/workflows/ci.yml/badge.svg)](https://github.com/csiroqa/dsh-schedule/actions/workflows/ci.yml)
+
 DeepSeek Harness（DSH）的**定时任务 + 状态监控**插件：按 cron 时间表自动触发 Agent 执行任务（每日摘要、定时巡检、自动报告），并通过 `/status` 命令与设置页仪表盘查看系统与 harness 综合状态。
 
 English: [README.en.md](README.en.md)
@@ -56,7 +58,9 @@ dsh plugin --profile web add link:E:\path\to\dsh-schedule   # Windows
 
 ## 兼容性
 
-- 针对 DSH `0.1.0-rc.5` 源码检出开发验证
+- **平台**：Windows / macOS / Linux（Node >= 22）—— 三平台构建与冒烟测试经 [GitHub Actions CI](https://github.com/csiroqa/dsh-schedule/actions) 验证
+- **磁盘统计**：三平台经 `node:fs` `statfs`（Windows 走系统磁盘空间 API）；平台不支持时优雅降级（显示"不支持"）
+- 针对 DSH `0.1.0-rc.5` 源码检出（`47f9438`）开发验证
 - 客户端仅依赖平台模块表（react 等），不随 DSH SDK 版本漂移
 - 构建产物：`tsdown`（host 半区 `lib/index.js` + browser 半区 `lib/client.js`，标准 `window.__ModuleLoader__.load` 闭包工厂格式）
 

@@ -1,5 +1,7 @@
 # dsh-schedule
 
+[![CI](https://github.com/csiroqa/dsh-schedule/actions/workflows/ci.yml/badge.svg)](https://github.com/csiroqa/dsh-schedule/actions/workflows/ci.yml)
+
 A **scheduled tasks + status monitoring** plugin for DeepSeek Harness (DSH): run agents automatically on a cron schedule (daily digests, periodic checks, automated reports), and inspect combined system/harness status via the `/status` command and a settings dashboard.
 
 中文: [README.md](README.md)
@@ -55,7 +57,9 @@ Restart `dsh web` and hard-refresh the browser (**Ctrl+F5**).
 
 ## Compatibility
 
-- Developed against a DSH `0.1.0-rc.5` source checkout
+- **Platforms**: Windows / macOS / Linux (Node >= 22) — builds and smoke tests are verified on all three platforms via [GitHub Actions CI](https://github.com/csiroqa/dsh-schedule/actions)
+- **Disk stats**: uses `node:fs` `statfs` on all platforms (Windows maps to the system disk-space API); degrades gracefully when unsupported
+- Developed against a DSH `0.1.0-rc.5` source checkout (`47f9438`)
 - The client half depends only on platform modules (react, etc.)
 - Build: `tsdown` (host `lib/index.js` + browser `lib/client.js`, standard `window.__ModuleLoader__.load` closure-factory format)
 
