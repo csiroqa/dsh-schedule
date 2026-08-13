@@ -9,7 +9,6 @@ English: [README.en.md](README.en.md)
 ## 功能
 
 ### 定时任务
-
 - **cron 时间表**（5 字段：分 时 日 月 周，如 `0 9 * * *` = 每天 9 点）：ticker 定期检查，命中即触发，分钟精度，同任务不并发
 - **自动执行**：到点创建一次性 Agent（工作目录归入对应 workspace，模型跟随设置页选择或由 config 指定），执行任务内容，会话日志落盘（侧栏可查），结果登记回任务记录
 - **任务管理**：`/schedule list / add / remove / pause / resume / run`，设置页「定时任务」页签同功能
@@ -81,4 +80,5 @@ dsh plugin --profile web add link:E:\path\to\dsh-schedule   # Windows
 ## 相关
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
-- 插件形态参考 [dsh-archive-viewer](https://github.com/csiroqa/dsh-archive-viewer)（`dsh.bundle.patch` + `dsh.client` 声明 + 槽位注册 + tsdown 双半区构建）
+- 同系列插件：[dsh-archive-viewer](https://github.com/csiroqa/dsh-archive-viewer)（归档增强：自动归档 / 文件夹 / 经验库 / 收藏便签）
+- 插件形态参考 [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui)（`dsh.bundle.patch` + `dsh.client` 声明 + 槽位注册 + tsdown 双半区构建）

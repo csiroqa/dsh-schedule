@@ -76,4 +76,5 @@ Restart `dsh web` and hard-refresh the browser (**Ctrl+F5**).
 ## Related
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
-- Plugin form reference: [dsh-archive-viewer](https://github.com/csiroqa/dsh-archive-viewer) (`dsh.bundle.patch` + `dsh.client` declaration + slot registration + tsdown dual-half build)
+- Companion plugin: [dsh-archive-viewer](https://github.com/csiroqa/dsh-archive-viewer) (archive enhancements: auto-archive / folders / knowledge library / bookmarks & notes)
+- Plugin form reference: [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) (`dsh.bundle.patch` + `dsh.client` declaration + slot registration + tsdown dual-half build)
