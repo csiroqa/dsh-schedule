@@ -100,8 +100,18 @@ function Bar({ percent, label }: { percent: number; label: string }): ReactNode 
 /** 渲染"设置 > 插件 > 状态"仪表盘页签。 */
 export function StatusSettingsTab({ load, t }: StatusSettingsTabProps): ReactNode {
   const [request, setRequest] = useState(0)
-  const [paused, setPaused] = useState(false)
+  const [userPaused, setUserPaused] = useState(false)
+  const [hidden, setHidden] = useState(document.hidden)
   const [state, setState] = useState<ViewState>({ status: 'loading' })
+
+  // 窗口隐藏时暂停轮询（避免后台无谓请求），回到前台立即恢复并刷新。
+  useEffect(() => {
+    const onVisibility = (): void => setHidden(document.hidden)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+  }, [])
+
+  const paused = userPaused || hidden
 
   useEffect(() => {
     let current = true
@@ -151,7 +161,7 @@ export function StatusSettingsTab({ load, t }: StatusSettingsTabProps): ReactNod
           type="button"
           aria-label={paused ? t('resumeRefresh') : t('pauseRefresh')}
           title={paused ? t('resumeRefresh') : t('pauseRefresh')}
-          onClick={() => setPaused(v => !v)}
+          onClick={() => setUserPaused(v => !v)}
         >
           {paused ? '▶' : '⏸'}
         </button>

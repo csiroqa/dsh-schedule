@@ -115,6 +115,14 @@ export class ScheduleStore {
     return this.tasks.get(id)
   }
 
+  /**
+   * 等待当前写链（含首轮文件加载）排空。
+   * 测试与优雅关闭场景使用：保证此前入队的读/写操作已生效。
+   */
+  flush(): Promise<void> {
+    return this.operationTail
+  }
+
   private async persist(): Promise<void> {
     const payload = JSON.stringify(this.list(), null, 2)
     await mkdir(dirname(this.path), { recursive: true })

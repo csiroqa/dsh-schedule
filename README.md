@@ -59,7 +59,7 @@ dsh plugin --profile web add link:E:\path\to\dsh-schedule   # Windows
 
 - **平台**：Windows / macOS / Linux（Node >= 22）—— 三平台构建与冒烟测试经 [GitHub Actions CI](https://github.com/csiroqa/dsh-schedule/actions) 验证
 - **磁盘统计**：三平台经 `node:fs` `statfs`（Windows 走系统磁盘空间 API）；平台不支持时优雅降级（显示"不支持"）
-- 针对 DSH `0.1.0-rc.5` 源码检出（`47f9438`）开发验证
+- 针对 DSH `0.1.0-rc.5` 源码检出（`47f9438`）开发验证，并在 `@deepseek-ai/dsh@0.1.0-rc.6`（npm 全局/npx 安装）环境实测可用
 - 客户端仅依赖平台模块表（react 等），不随 DSH SDK 版本漂移
 - 构建产物：`tsdown`（host 半区 `lib/index.js` + browser 半区 `lib/client.js`，标准 `window.__ModuleLoader__.load` 闭包工厂格式）
 

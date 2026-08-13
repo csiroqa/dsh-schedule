@@ -30,6 +30,7 @@
   "scripts": {
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "watch": "tsdown --watch"
   },
   "keywords": [
@@ -60,15 +61,15 @@
     "@deepseek-ai/cordis-plugin-loader": "link:../deepseek-harness/vendor/loader",
     "@deepseek-ai/cordis-plugin-timer": "link:../deepseek-harness/vendor/timer",
     "@deepseek-ai/dsh-agent": "link:../deepseek-harness/packages/core/agent",
-    "@deepseek-ai/dsh-commands": "link:../deepseek-harness/packages/interaction/commands",
-    "@deepseek-ai/dsh-host-webserver": "link:../deepseek-harness/packages/host/webserver",
-    "@deepseek-ai/dsh-home-paths": "link:../deepseek-harness/packages/util/home-paths",
-    "@deepseek-ai/dsh-llm": "link:../deepseek-harness/packages/llm/llm",
-    "@deepseek-ai/dsh-session": "link:../deepseek-harness/packages/core/session",
     "@deepseek-ai/dsh-client-locale": "link:../deepseek-harness/packages/client/locale",
     "@deepseek-ai/dsh-client-runtime": "link:../deepseek-harness/packages/client/runtime",
     "@deepseek-ai/dsh-client-ui-settings": "link:../deepseek-harness/packages/client/ui-settings",
-    "@deepseek-ai/dsh-client-ui-slots": "link:../deepseek-harness/packages/client/ui-slots"
+    "@deepseek-ai/dsh-client-ui-slots": "link:../deepseek-harness/packages/client/ui-slots",
+    "@deepseek-ai/dsh-commands": "link:../deepseek-harness/packages/interaction/commands",
+    "@deepseek-ai/dsh-home-paths": "link:../deepseek-harness/packages/util/home-paths",
+    "@deepseek-ai/dsh-host-webserver": "link:../deepseek-harness/packages/host/webserver",
+    "@deepseek-ai/dsh-llm": "link:../deepseek-harness/packages/llm/llm",
+    "@deepseek-ai/dsh-session": "link:../deepseek-harness/packages/core/session"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
@@ -77,7 +78,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsdown": "^0.22.14",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
   },
   "files": [
     "lib/index.js",

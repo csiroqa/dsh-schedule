@@ -60,7 +60,7 @@ Restart `dsh web` and hard-refresh the browser (**Ctrl+F5**).
 
 - **Platforms**: Windows / macOS / Linux (Node >= 22) — builds and smoke tests are verified on all three platforms via [GitHub Actions CI](https://github.com/csiroqa/dsh-schedule/actions)
 - **Disk stats**: uses `node:fs` `statfs` on all platforms (Windows maps to the system disk-space API); degrades gracefully when unsupported
-- Developed against a DSH `0.1.0-rc.5` source checkout (`47f9438`)
+- Developed against a DSH `0.1.0-rc.5` source checkout (`47f9438`) and verified with `@deepseek-ai/dsh@0.1.0-rc.6` (npm global/npx install)
 - The client half depends only on platform modules (react, etc.)
 - Build: `tsdown` (host `lib/index.js` + browser `lib/client.js`, standard `window.__ModuleLoader__.load` closure-factory format)
 

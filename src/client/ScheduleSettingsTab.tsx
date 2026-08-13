@@ -108,6 +108,20 @@ export function ScheduleSettingsTab({ list, action, t }: ScheduleSettingsTabProp
   const [desc, setDesc] = useState('')
   const [busy, setBusy] = useState(false)
   const [notice, setNotice] = useState<{ kind: 'info' | 'error'; text: string } | null>(null)
+  /** 待二次确认删除的任务 id（3 秒未确认自动复位）。 */
+  const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null)
+
+  const requestRemove = (taskId: string): void => {
+    if (confirmRemoveId === taskId) {
+      setConfirmRemoveId(null)
+      void perform({ action: 'remove', id: taskId })
+      return
+    }
+    setConfirmRemoveId(taskId)
+    window.setTimeout(() => {
+      setConfirmRemoveId(current => (current === taskId ? null : current))
+    }, 3000)
+  }
 
   useEffect(() => {
     let current = true
@@ -257,11 +271,11 @@ export function ScheduleSettingsTab({ list, action, t }: ScheduleSettingsTabProp
                 </button>
                 <button
                   type="button"
-                  style={{ ...button, color: '#e08a8a' }}
+                  style={{ ...button, color: '#e08a8a', ...(confirmRemoveId === task.id ? { background: '#a13b3b', color: '#fff' } : {}) }}
                   disabled={taskBusy}
-                  onClick={() => { if (confirm(t('removeConfirm'))) void perform({ action: 'remove', id: task.id }) }}
+                  onClick={() => requestRemove(task.id)}
                 >
-                  {t('remove')}
+                  {confirmRemoveId === task.id ? t('removeConfirm') : t('remove')}
                 </button>
               </div>
             </div>
