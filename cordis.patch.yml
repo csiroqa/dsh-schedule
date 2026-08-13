@@ -1,0 +1,28 @@
+# dsh-schedule bundle patch: inserts its plugin row into the profile roster.
+# Install with:
+#   dsh plugin --profile web add link:<this-directory>
+#
+# The single row mounts BOTH halves: the host engine (cron scheduler + agent
+# runner + status collector, /schedule & /status commands) and the browser side
+# ("定时任务 / 状态" tabs under Settings > Plugins, via the dsh.client
+# declaration in package.json).
+#
+# 安全提示：
+#   - 定时任务会在设定时间自动执行（使用 DSH 当前账号权限），请只添加你信任的任务内容。
+#   - /dsh-schedule/* 接口仅监听本机（DSH 默认回环绑定），请勿把 DSH 端口暴露到公网。
+#
+# config 详解（全部可选）：
+#   defaultCwd            任务默认工作目录；留空 = DSH 进程的启动目录
+#   defaultProvider       任务默认模型服务商（provider）；留空 = 跟随设置页的模型选择
+#   defaultModel          任务默认模型；留空 = 跟随设置页的模型选择
+#   tickSeconds           定时检查任务的时间间隔（秒）；cron 精确到分钟，默认 30 秒足够
+#   maxRunMs              单次任务运行超时（毫秒）；0 = 不限时（任务可能永不结束）
+- insert:
+    - id: schedule
+      name: '@dsh-external/dsh-schedule'
+      config:
+        defaultCwd: ''
+        defaultProvider: ''
+        defaultModel: ''
+        tickSeconds: 30
+        maxRunMs: 1800000

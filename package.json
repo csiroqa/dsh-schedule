@@ -1,0 +1,88 @@
+{
+  "name": "@dsh-external/dsh-schedule",
+  "version": "0.1.0",
+  "description": "定时任务 + 状态监控插件：按 cron 时间表自动触发 DSH Agent 执行任务，/status 与设置页仪表盘查看系统与 harness 综合状态。",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "watch": "tsdown --watch"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "cron",
+    "schedule",
+    "status"
+  ],
+  "author": "csiroqa <justinwangyj@163.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/csiroqa/dsh-schedule",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csiroqa/dsh-schedule.git"
+  },
+  "bugs": {
+    "url": "https://github.com/csiroqa/dsh-schedule/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@11.7.0",
+  "dependencies": {
+    "@deepseek-ai/cordis": "link:../deepseek-harness/vendor/cordis",
+    "@deepseek-ai/cordis-plugin-loader": "link:../deepseek-harness/vendor/loader",
+    "@deepseek-ai/cordis-plugin-timer": "link:../deepseek-harness/vendor/timer",
+    "@deepseek-ai/dsh-agent": "link:../deepseek-harness/packages/core/agent",
+    "@deepseek-ai/dsh-commands": "link:../deepseek-harness/packages/interaction/commands",
+    "@deepseek-ai/dsh-host-webserver": "link:../deepseek-harness/packages/host/webserver",
+    "@deepseek-ai/dsh-home-paths": "link:../deepseek-harness/packages/util/home-paths",
+    "@deepseek-ai/dsh-llm": "link:../deepseek-harness/packages/llm/llm",
+    "@deepseek-ai/dsh-session": "link:../deepseek-harness/packages/core/session",
+    "@deepseek-ai/dsh-client-locale": "link:../deepseek-harness/packages/client/locale",
+    "@deepseek-ai/dsh-client-runtime": "link:../deepseek-harness/packages/client/runtime",
+    "@deepseek-ai/dsh-client-ui-settings": "link:../deepseek-harness/packages/client/ui-settings",
+    "@deepseek-ai/dsh-client-ui-slots": "link:../deepseek-harness/packages/client/ui-slots"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "~18.3.1",
+    "@types/react-dom": "~18.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsdown": "^0.22.14",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "src",
+    "cordis.patch.yml"
+  ]
+}

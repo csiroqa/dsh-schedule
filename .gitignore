@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build artifacts (rebuild with `pnpm build` after cloning)
+lib/
+
+# TypeScript
+*.tsbuildinfo
+
+# Local logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
